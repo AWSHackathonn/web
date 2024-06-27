@@ -4,12 +4,16 @@ import { theme } from '../../styles/Theme';
 
 interface ContentsBarProps {
     onDownloadClick: () => void;
+    onCopyClick: () => void;
 }
 
-const ContentsBar: React.FC<ContentsBarProps> = ({ onDownloadClick }) => {
+const ContentsBar: React.FC<ContentsBarProps> = ({ onDownloadClick, onCopyClick }) => {
     const handleDownloadClick = () => {
-        console.log('ContentBar: handleDownloadClick called');
         onDownloadClick();
+    };
+
+    const handleCopyClick = () => {
+        onCopyClick();
     };
 
     return (
@@ -17,14 +21,14 @@ const ContentsBar: React.FC<ContentsBarProps> = ({ onDownloadClick }) => {
             <Wrapper>
                 <ContentSection>
                     <TextContainer>
-                        <Text size="large">AI가 작성한 글입니다. 정보가 부정확할 수도 있으니 주의해주세요.</Text>
+                        <Text size="large">AI가 작성한 글입니다. 정보가 정확하지 않을 수도 있으니 주의하세요.</Text>
                         <Text size="small">Copy 버튼을 눌러 전체 내용을 복사하거나, Download 버튼을 눌러 pdf 형식으로 다운로드하세요.</Text>
                     </TextContainer>
                     <ButtonContainer>
-                        <Button>
+                        <Button text="Copy" onClick={handleCopyClick}>
                             <ButtonText>Copy</ButtonText>
                         </Button>
-                        <Button onClick={handleDownloadClick}>
+                        <Button text="Download" onClick={handleDownloadClick}>
                             <ButtonText>Download</ButtonText>
                         </Button>
                     </ButtonContainer>
@@ -44,7 +48,7 @@ const Container = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
     padding: 1rem;
-    margin: 2rem 0;
+    margin-bottom: 1rem;
 `;
 
 const Wrapper = styled.div`
@@ -60,6 +64,7 @@ const ContentSection = styled.div`
     background-color: #f4f9ff;
     border: 1px solid #d1dbe5;
     border-radius: 12px;
+    gap: 3rem;
 `;
 
 const TextContainer = styled.div`
@@ -87,7 +92,7 @@ const ButtonContainer = styled.div`
     gap: 1.5rem;
 `;
 
-const Button = styled.div`
+const Button = styled.div<{ text?: 'Copy' | 'Download' }>`
     width: 130px;
     height: 40px;
     display: flex;
@@ -97,8 +102,12 @@ const Button = styled.div`
     padding: 0 16px;
     border-radius: 12px;
     overflow: hidden;
-    background-color: black;
     cursor: pointer;
+    background-color: ${(props) => (props.text === 'Copy' ? `${theme.blue}` : `${theme.lightblue}`)};
+
+    &:hover {
+        opacity: 0.4;
+    }
 `;
 
 const ButtonText = styled.div`
