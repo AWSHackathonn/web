@@ -27,7 +27,7 @@ const InputRepo = ({isValid}:{isValid:boolean}) => {
     <Container>
         <Header>
             <HeadText>GitHub Repository URL</HeadText>
-            <EssentialText>* 필수 항목</EssentialText>
+            <EssentialText>* 필수 항목 / 최대 3개까지 가능합니다.</EssentialText>
         </Header>
         <InputContainer>
         {inputBoxes.map((input, index) => (
