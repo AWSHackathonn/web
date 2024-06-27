@@ -46,7 +46,7 @@ const EssentialText=styled.p`
 const Input=styled.input`
      border-radius: 6px;
   border: 1px solid #d9d9d9;
-  width:280px;
+  width:520px;
   height:40px;
   padding:10px;
 `
