@@ -10,7 +10,18 @@ const InputQuestion = ({index}:{index:number}) => {
   const [userInput, setUserInput]=useRecoilState(userInputAtom);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
+    const updatedQuestionList = [...userInput.questionList];
+    updatedQuestionList[index] = {
+      ...updatedQuestionList[index],
+      question: event.target.value, // inputValue를 question에 할당
+    };
+  
+    setUserInput((prevState) => ({
+      ...prevState,
+      questionList: updatedQuestionList,
+    }));
+  
+    setInputValue(event.target.value); // inputValue 상태 업데이트
   };
 
   const handleOtherDataChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
