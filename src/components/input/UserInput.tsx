@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import BigButton from "../button/BigButton";
 import styled from "styled-components";
 import TextField from "./TextField";
 import InputReadme from "./InputReadme";
 import InputQuestion from "./InputQuestion";
-import { useRecoilState } from "recoil";
-import { userInputAtom } from "../../stores/input/atom";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { isOk, userInputAtom, userInputURLAtom } from "../../stores/input/atom";
 
 const UserInput = () => {
   const [userInput, setUserInput]=useRecoilState(userInputAtom);
+  const [submit,setSubmit]=useRecoilState(isOk);
+  const userInputURL=useRecoilValue(userInputURLAtom);
 
   const handleJobRoleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setUserInput({
@@ -25,8 +27,18 @@ const UserInput = () => {
   };
 
   const onSubmit=()=>{
+    console.log("제출버튼 누름");
     console.log(userInput);
   }
+
+  useEffect(()=>{
+    if(userInput.jobRole!=='' && 
+      userInputURL.length!==0 && 
+      userInput.questionList[0].address.length!==0 && 
+      userInput.questionList[0].question!=='' ){
+      setSubmit(true);
+    }
+  },[userInput.jobRole,userInputURL, userInput.questionList[0].address.length,userInput.questionList[0].question]);
 
   return(
   <>

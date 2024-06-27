@@ -29,7 +29,7 @@ const Button = styled.button<{ valid: boolean }>`
   cursor: ${(props) => (props.valid ? 'pointer' : 'not-allowed')};
   
   &:hover {
-    background-color: ${(props) => props.theme.blue};
-    transition: 0.4s;
+    background-color: ${(props) => props.valid?props.theme.blue:'#b4bcc6'};
+    transition: ${(props) => (props.valid ? '0.4s' : 'none')};
   }
 `;

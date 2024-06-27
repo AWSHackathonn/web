@@ -31,7 +31,7 @@ export const userInputAtom = atom<UserInput>({
 
 export const isOk=atom({
     key:'isOkay',
-    default:true
+    default:false
 })
 
 export const userInputURLAtom=atom<string[]>({
