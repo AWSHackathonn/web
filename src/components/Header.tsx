@@ -27,7 +27,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  min-height: 100vh;
   background-color: #f8fafb;
   overflow-x: hidden;
 `;
@@ -52,7 +51,7 @@ export const HeaderContent = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
-  color: #0e141b;
+  color: black;
 `;
 
 export const LogoContainer = styled.div`
@@ -60,10 +59,9 @@ export const LogoContainer = styled.div`
   height: 16px;
 `;
 
-export const Title = styled.h2`
+export const Title = styled.div`
   font-family: 'Pretendard';
   color: black;
-  font-size: ${theme.textStyles.subtitle4.fontSize};
+  font-size: ${theme.textStyles.subtitle5.fontSize};
   font-weight: 700;
-  letter-spacing: -0.015em;
 `;
