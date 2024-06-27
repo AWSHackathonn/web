@@ -1,13 +1,40 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { styled } from 'styled-components'
 import ReadmeRadioButton from './ReadmeRadioButton'
 import TextField from './TextField'
+import { useRecoilState } from 'recoil'
+import { userInputAtom } from '../../stores/input/atom'
 
 const InputQuestion = ({index}:{index:number}) => {
   const [inputValue, setInputValue] = useState('');
+  const [userInput, setUserInput]=useRecoilState(userInputAtom);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
+    const updatedQuestionList = [...userInput.questionList];
+    updatedQuestionList[index] = {
+      ...updatedQuestionList[index],
+      question: event.target.value, // inputValue를 question에 할당
+    };
+  
+    setUserInput((prevState) => ({
+      ...prevState,
+      questionList: updatedQuestionList,
+    }));
+  
+    setInputValue(event.target.value); // inputValue 상태 업데이트
+  };
+
+  const handleOtherDataChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const updatedQuestionList = [...userInput.questionList];
+    updatedQuestionList[index] = {
+      ...updatedQuestionList[index],
+      otherData: event.target.value,
+    };
+
+    setUserInput((prevState) => ({
+      ...prevState,
+      questionList: updatedQuestionList,
+    }));
   };
 
   return (
@@ -18,7 +45,7 @@ const InputQuestion = ({index}:{index:number}) => {
         </Header>
         <Input placeholder='자기소개서 문항을 입력해주세요.' value={inputValue} onChange={handleInputChange}/>
         <ReadmeRadioButton index={index} inputQuestionValue={inputValue}/>
-        <TextField text="기타" isEssential={false} placeHolder='추가적으로 넣고 싶은 내용을 입력해주세요.' paddingLeftZeroOption={true}/>
+        <TextField text="기타" isEssential={false} placeHolder='추가적으로 넣고 싶은 내용을 입력해주세요.' paddingLeftZeroOption={true} onChange={handleOtherDataChange} disabled={inputValue?false:true}/>
     </Container>
   )
 }

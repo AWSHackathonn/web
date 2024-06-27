@@ -1,23 +1,40 @@
 import { atom } from "recoil";
 
-export const userInputAtom = atom({
+interface Question {
+    question: string;
+    address: string[];
+    otherData: string;
+  }
+  
+  interface UserInput {
+    jobRole: string;
+    company: string;
+    questionList: Question[];
+  }
+
+export const userInputAtom = atom<UserInput>({
     key:'userInputAtom',
-    default:[
-        {
+    default:{
+        
             jobRole:'',
             company:'',
             questionList:[
                 {
                     question:'',
-                    address:'',
+                    address:[],
                     otherData:''
-                }
+                },
+                
             ]
-        }
-    ]
+    }
 })
 
 export const isOk=atom({
     key:'isOkay',
-    default:true
+    default:false
+})
+
+export const userInputURLAtom=atom<string[]>({
+    key:'userInputURLAtom',
+    default:[]
 })
