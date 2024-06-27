@@ -62,7 +62,7 @@ const ReadmeRadioButton = ({ index, inputQuestionValue }: { index: number, input
   return (
     <Container>
       <Header>
-        <HeadText>연결하고 싶은 GitHub Repository</HeadText>
+        <HeadText>연결하고 싶은 GitHub 프로젝트 Readme</HeadText>
         {index === 0 && <EssentialText>* 필수 항목</EssentialText>}
       </Header>
       <CheckboxContainer>
