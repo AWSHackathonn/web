@@ -174,4 +174,5 @@ const CharacterCount = styled.div`
   font-weight: bold;
   color: #00000080;
   text-align: right;
+  padding: 0 2rem;
 `;
