@@ -1,9 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 
-const RepoRadioButton = ({index}:{index:number}) => {
+const RepoRadioButton = ({ index, inputQuestionValue }: { index: number, inputQuestionValue: string }) => {
   const initialSelectedItems = index === 0 ? ['item1'] : [];
   const [selectedItems, setSelectedItems] = useState<string[]>(initialSelectedItems);
+  const [disabledState, setDisabledState] = useState<boolean>(false);
+
+  useEffect(() => {
+    const newDisabledState = index !== 0 && inputQuestionValue === '';
+    setDisabledState(newDisabledState);
+
+    if (newDisabledState) {
+      setSelectedItems([]);
+    }
+  }, [index, inputQuestionValue]);
 
   const handleCheckboxChange = (item: string) => {
     if (selectedItems.includes(item)) {
@@ -19,7 +29,7 @@ const RepoRadioButton = ({index}:{index:number}) => {
     <Container>
       <Header>
         <HeadText>연결하고 싶은 GitHub Repository</HeadText>
-        {index===0 &&<EssentialText>* 필수 항목</EssentialText>}
+        {index === 0 && <EssentialText>* 필수 항목</EssentialText>}
       </Header>
       <CheckboxContainer>
         <CheckboxItem>
@@ -27,7 +37,8 @@ const RepoRadioButton = ({index}:{index:number}) => {
             type="checkbox"
             id="item1"
             checked={selectedItems.includes('item1')}
-            onChange={() => {handleCheckboxChange('item1');}}
+            onChange={() => { handleCheckboxChange('item1'); }}
+            disabled={disabledState}
           />
           <Label htmlFor="item1">1</Label>
         </CheckboxItem>
@@ -36,7 +47,8 @@ const RepoRadioButton = ({index}:{index:number}) => {
             type="checkbox"
             id="item2"
             checked={selectedItems.includes('item2')}
-            onChange={() => {handleCheckboxChange('item2');}}
+            onChange={() => { handleCheckboxChange('item2'); }}
+            disabled={disabledState}
           />
           <Label htmlFor="item2">2</Label>
         </CheckboxItem>
@@ -45,7 +57,8 @@ const RepoRadioButton = ({index}:{index:number}) => {
             type="checkbox"
             id="item3"
             checked={selectedItems.includes('item3')}
-            onChange={() => {handleCheckboxChange('item3');}}
+            onChange={() => { handleCheckboxChange('item3'); }}
+            disabled={disabledState}
           />
           <Label htmlFor="item3">3</Label>
         </CheckboxItem>
@@ -90,11 +103,11 @@ const CheckboxItem = styled.div`
   align-items: center;
 `;
 
-const CheckBox=styled.input`
-  width:16px;
-  height:16px;
-`
+const CheckBox = styled.input`
+  width: 16px;
+  height: 16px;
+`;
 
-const Label=styled.label`
+const Label = styled.label`
   font-size: ${(props) => props.theme.textStyles.subtitle5.fontSize};
-`
+`;
