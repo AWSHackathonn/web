@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { FiPlus} from "react-icons/fi";
 import { CgClose } from "react-icons/cg";
 
-const InputRepo = () => {
+const InputReadme = () => {
     const [inputBoxes, setInputBoxes] = useState<string[]>(['']);
 
   const handleAddInputBox = () => {
@@ -30,7 +30,7 @@ const InputRepo = () => {
   return (
     <Container>
         <Header>
-            <HeadText>GitHub Repository URL</HeadText>
+            <HeadText>GitHub Readme.md URL</HeadText>
             <EssentialText>* 필수 항목 / 최대 3개까지 가능합니다.</EssentialText>
         </Header>
         <InputContainer>
@@ -40,7 +40,7 @@ const InputRepo = () => {
           <NumberText>{index+1+"."}</NumberText>
           <InputWrap focusBorder={index === 0}>
             <Input
-              placeholder='ex) https://github.com/username/project'
+              placeholder='ex) https://github.com/user/repository/blob/branch/README.md'
               value={input}
               onChange={(e) => {handleInputChange(index, e.target.value);}}
             />
@@ -63,7 +63,7 @@ const InputRepo = () => {
   )
 }
 
-export default InputRepo
+export default InputReadme
 
 const Container = styled.div`
     display: flex;
