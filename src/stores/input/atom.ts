@@ -2,8 +2,8 @@ import { atom } from "recoil";
 
 export const userInputAtom = atom({
     key:'userInputAtom',
-    default:[
-        {
+    default:{
+        
             jobRole:'',
             company:'',
             questionList:[
@@ -13,8 +13,8 @@ export const userInputAtom = atom({
                     otherData:''
                 }
             ]
-        }
-    ]
+        
+    }
 })
 
 export const isOk=atom({
