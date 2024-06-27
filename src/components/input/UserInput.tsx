@@ -1,14 +1,44 @@
-import React from "react";
+import React, { useEffect } from "react";
 import BigButton from "../button/BigButton";
 import styled from "styled-components";
 import TextField from "./TextField";
 import InputReadme from "./InputReadme";
 import InputQuestion from "./InputQuestion";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { isOk, userInputAtom, userInputURLAtom } from "../../stores/input/atom";
 
 const UserInput = () => {
+  const [userInput, setUserInput]=useRecoilState(userInputAtom);
+  const [submit,setSubmit]=useRecoilState(isOk);
+  const userInputURL=useRecoilValue(userInputURLAtom);
+
+  const handleJobRoleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setUserInput({
+      ...userInput,
+      jobRole: event.target.value,
+    });
+  };
+
+  const handleCompanyChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setUserInput({
+      ...userInput,
+      company: event.target.value,
+    });
+  };
+
   const onSubmit=()=>{
-    console.log("버튼 눌림");
+    console.log("제출버튼 누름");
+    console.log(userInput);
   }
+
+  useEffect(()=>{
+    if(userInput.jobRole!=='' && 
+      userInputURL.length!==0 && 
+      userInput.questionList[0].address.length!==0 && 
+      userInput.questionList[0].question!=='' ){
+      setSubmit(true);
+    }
+  },[userInput.jobRole,userInputURL, userInput.questionList[0].address.length,userInput.questionList[0].question]);
 
   return(
   <>
@@ -16,11 +46,11 @@ const UserInput = () => {
   <Container>
     <Head>
       <Title>정보 입력하기</Title>
-      <SmallTitle>자기소개서를 위한 정보를 입력해주세요</SmallTitle>
+      <SmallTitle>자기소개서 작성을 위한 정보를 입력해주세요</SmallTitle>
     </Head>
     <InputContainer>
-    <TextField text="직무 정보" isEssential={true} placeHolder="직무 정보를 입력해주세요." paddingLeftZeroOption={false}/>
-    <TextField text="기업 정보" isEssential={false} placeHolder="기업 정보를 입력해주세요." paddingLeftZeroOption={false}/>
+    <TextField text="직무 정보" isEssential={true} placeHolder="직무 정보를 입력해주세요." paddingLeftZeroOption={false} onChange={handleJobRoleChange} value={userInput.jobRole}/>
+    <TextField text="기업 정보" isEssential={false} placeHolder="기업 정보를 입력해주세요." paddingLeftZeroOption={false} onChange={handleCompanyChange} value={userInput.company}/>
     <InputReadme />
     {[...Array(5)].map((_, index) => (
     <InputQuestion index={index} key={index} />

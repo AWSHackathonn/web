@@ -2,10 +2,13 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { FiPlus} from "react-icons/fi";
 import { CgClose } from "react-icons/cg";
+import {  useSetRecoilState } from 'recoil';
+import { userInputURLAtom } from '../../stores/input/atom';
 
 const InputReadme = () => {
     const [inputBoxes, setInputBoxes] = useState<string[]>(['']);
-
+    const setUserInputURL=useSetRecoilState(userInputURLAtom);
+  
   const handleAddInputBox = () => {
     if (inputBoxes.length < 3) {
       setInputBoxes([...inputBoxes, '']);
@@ -13,18 +16,26 @@ const InputReadme = () => {
   };
 
   const handleRemoveInputBox = (index: number) => {
-    setInputBoxes(inputBoxes.filter((_, i) => i !== index));
+    const newInputBoxes=inputBoxes.filter((_, i) => i !== index);
+    setInputBoxes(newInputBoxes);
+    updateUserInputURL(newInputBoxes);
   };
 
   const handleInputChange = (index: number, value: string) => {
     const newInputBoxes = [...inputBoxes];
     newInputBoxes[index] = value;
     setInputBoxes(newInputBoxes);
+    updateUserInputURL(newInputBoxes);
   };
 
   const isValidURL = (url: string): boolean => {
     const urlRegex = /^(https?:\/\/)?([\w-]+(\.[\w-]+)+\/?)([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/;
     return urlRegex.test(url);
+  };
+
+  const updateUserInputURL = (newInputBoxes: string[]) => {
+    const validURLs = newInputBoxes.filter((url) => isValidURL(url));
+    setUserInputURL(validURLs);
   };
 
   return (
