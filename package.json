@@ -40,8 +40,15 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^8.57.0",
+    "@eslint/compat": "^1.1.0",
+    "@eslint/js": "^8.45.0",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.45.0",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-config-standard-with-typescript": "^43.0.1",
+    "eslint-plugin-react": "^7.34.3",
+    "globals": "^15.6.0",
     "prettier": "^3.3.2"
   }
 }
