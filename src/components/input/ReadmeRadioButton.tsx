@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { styled } from 'styled-components';
 
-const RepoRadioButton = ({ index, inputQuestionValue }: { index: number, inputQuestionValue: string }) => {
+const ReadmeRadioButton = ({ index, inputQuestionValue }: { index: number, inputQuestionValue: string }) => {
   const initialSelectedItems = index === 0 ? ['item1'] : [];
   const [selectedItems, setSelectedItems] = useState<string[]>(initialSelectedItems);
   const [disabledState, setDisabledState] = useState<boolean>(false);
@@ -67,7 +67,7 @@ const RepoRadioButton = ({ index, inputQuestionValue }: { index: number, inputQu
   );
 };
 
-export default RepoRadioButton;
+export default ReadmeRadioButton;
 
 const Container = styled.div`
   display: flex;
