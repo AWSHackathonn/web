@@ -8,16 +8,17 @@ interface TextFieldProps {
     paddingLeftZeroOption:boolean;
     onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
     value?: string;
+    disabled?:boolean;
 }
 
-const TextField = ({text,placeHolder,isEssential, paddingLeftZeroOption, value, onChange}:TextFieldProps) => {
+const TextField = ({text,placeHolder,isEssential, paddingLeftZeroOption, value, onChange, disabled}:TextFieldProps) => {
   return (
     <Container paddingLeftZeroOption={paddingLeftZeroOption}>
         <Header>
         <HeadText>{text}</HeadText>
         {isEssential?<EssentialText>* 필수 항목</EssentialText>:<></>}
         </Header>
-        <Field placeholder={placeHolder} onChange={onChange} value={value}/>
+        <Field placeholder={placeHolder} onChange={onChange} value={value} disabled={disabled}/>
     </Container>
   )
 }

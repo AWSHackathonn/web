@@ -45,7 +45,7 @@ const InputQuestion = ({index}:{index:number}) => {
         </Header>
         <Input placeholder='자기소개서 문항을 입력해주세요.' value={inputValue} onChange={handleInputChange}/>
         <ReadmeRadioButton index={index} inputQuestionValue={inputValue}/>
-        <TextField text="기타" isEssential={false} placeHolder='추가적으로 넣고 싶은 내용을 입력해주세요.' paddingLeftZeroOption={true} onChange={handleOtherDataChange} />
+        <TextField text="기타" isEssential={false} placeHolder='추가적으로 넣고 싶은 내용을 입력해주세요.' paddingLeftZeroOption={true} onChange={handleOtherDataChange} disabled={inputValue?false:true}/>
     </Container>
   )
 }
