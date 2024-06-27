@@ -2,6 +2,7 @@ import React from "react";
 import BigButton from "../button/BigButton";
 import styled from "styled-components";
 import TextField from "./TextField";
+import InputRepo from "./InputRepo";
 
 const UserInput = () => {
   const onSubmit=()=>{
@@ -19,6 +20,7 @@ const UserInput = () => {
     <InputContainer>
     <TextField text="직무 정보" isEssential={true} placeHolder="직무 정보를 입력해주세요." />
     <TextField text="기업 정보" isEssential={false} placeHolder="기업 정보를 입력해주세요." />
+    <InputRepo isValid={true}/>
     </InputContainer>
     <BigButton text="제출" event={onSubmit}/>
     </Container>
