@@ -16,3 +16,8 @@ export const userInputAtom = atom({
         }
     ]
 })
+
+export const isOk=atom({
+    key:'isOkay',
+    default:true
+})

@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components';
+import { useRecoilState } from "recoil";
+import { isOk } from "../../stores/input/atom";
 
 interface BigButtonProps {
     text:string;
@@ -8,27 +10,26 @@ interface BigButtonProps {
 
 
 const BigButton = ({text, event}:BigButtonProps) => {
+  const [valid]=useRecoilState(isOk);
+
   return (
-    <Button onClick={()=>{event();}}>{text}</Button>
+    <Button onClick={()=>{event();} } disabled={!valid} valid={valid}>{text}</Button>
   )
 }
 
 export default BigButton
 
-const Button = styled.button`
-    width:240px;
-    height:48px;
-
-    border-radius: 8px;
-
-    color: ${(props)=>props.theme.white};
-    font-size:${(props)=>props.theme.textStyles.subtitle5.fontSize};
-
-    background-color: #B4BCC6;
-    
-    &:hover{
-        background-color:${(props)=>props.theme.blue} ;
-
-        transition:0.4s
-    }
-`
+const Button = styled.button<{ valid: boolean }>`
+  width: 240px;
+  height: 48px;
+  border-radius: 8px;
+  color: ${(props) => props.theme.white};
+  font-size: ${(props) => props.theme.textStyles.subtitle5.fontSize};
+  background-color: ${(props) => (props.valid ? props.theme.lightblue : '#B4BCC6')};
+  cursor: ${(props) => (props.valid ? 'pointer' : 'not-allowed')};
+  
+  &:hover {
+    background-color: ${(props) => props.theme.blue};
+    transition: 0.4s;
+  }
+`;
