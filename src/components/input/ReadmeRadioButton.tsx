@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { styled } from 'styled-components';
 import { userInputAtom, userInputURLAtom } from '../../stores/input/atom';
+import { theme } from '../../styles/Theme';
 
 const ReadmeRadioButton = ({ index, inputQuestionValue }: { index: number, inputQuestionValue: string }) => {
   const userInputURL = useRecoilValue(userInputURLAtom);
@@ -59,26 +60,36 @@ const ReadmeRadioButton = ({ index, inputQuestionValue }: { index: number, input
     });
   };
 
+  const getRepositoryName = (url: string): string => {
+    const startIndex = url.indexOf('/repository/') + '/repository/'.length;
+    const endIndex = url.indexOf('/', startIndex);
+    return url.substring(startIndex, endIndex);
+  };
+
   return (
     <Container>
       <Header>
         <HeadText>연결하고 싶은 GitHub 프로젝트 Readme</HeadText>
-        {index === 0 && <EssentialText>* 필수 항목</EssentialText>}
+        {index === 0 && <EssentialText>* 필수</EssentialText>}
       </Header>
       <CheckboxContainer>
-        {userInputURL.map((url, idx) => (
-          <CheckboxItem key={url}>
-            <CheckBox
-              type="checkbox"
-              id={`item${idx + 1}`}
-              value={url}
-              checked={selectedItems.includes(url)}
-              onChange={() => handleCheckboxChange(url)}
-              disabled={disabledState}
-            />
-            <Label htmlFor={`item${idx + 1}`}>{idx + 1}</Label>
-          </CheckboxItem>
-        ))}
+      {userInputURL.length === 0 ? (
+          <NoItemsText>먼저 깃허브 주소를 입력하세요.</NoItemsText>
+        ) : (
+          userInputURL.map((url, idx) => (
+            <CheckboxItem key={url}>
+              <CheckBox
+                type="checkbox"
+                id={`item${idx + 1}`}
+                value={url}
+                checked={selectedItems.includes(url)}
+                onChange={() => handleCheckboxChange(url)}
+                disabled={disabledState}
+              />
+              <Label htmlFor={`item${idx + 1}`}>{getRepositoryName(url)}</Label>
+            </CheckboxItem>
+          ))
+        )}
       </CheckboxContainer>
     </Container>
   );
@@ -111,7 +122,8 @@ const EssentialText = styled.p`
 
 const CheckboxContainer = styled.div`
   display: flex;
-  gap: 108px;
+  flex-direction: column;
+  gap: 10px;
   margin-top: 10px;
 `;
 
@@ -125,6 +137,16 @@ const CheckBox = styled.input`
   height: 16px;
 `;
 
+const NoItemsText = styled.div`
+  font-size: ${theme.textStyles.caption.fontSize};
+  color: ${theme.error};
+`;
+
 const Label = styled.label`
+  width: 30rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+
   font-size: ${(props) => props.theme.textStyles.subtitle5.fontSize};
 `;

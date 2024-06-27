@@ -8,7 +8,7 @@ function App() {
   return (
     <RecoilRoot>
       <Routes>
-        <Route path="/input" element={<UserInput />} />
+        <Route path="/" element={<UserInput />} />
         <Route path="/contents" element={<Contents />} />
       </Routes>
     </RecoilRoot>
