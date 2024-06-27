@@ -3,8 +3,7 @@ import styled from 'styled-components'
 import { FiPlus} from "react-icons/fi";
 import { CgClose } from "react-icons/cg";
 
-// isValid 하드코딩상태
-const InputRepo = ({isValid}:{isValid:boolean}) => {
+const InputRepo = () => {
     const [inputBoxes, setInputBoxes] = useState<string[]>(['']);
 
   const handleAddInputBox = () => {
@@ -21,6 +20,11 @@ const InputRepo = ({isValid}:{isValid:boolean}) => {
     const newInputBoxes = [...inputBoxes];
     newInputBoxes[index] = value;
     setInputBoxes(newInputBoxes);
+  };
+
+  const isValidURL = (url: string): boolean => {
+    const urlRegex = /^(https?:\/\/)?([\w-]+(\.[\w-]+)+\/?)([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?$/;
+    return urlRegex.test(url);
   };
 
   return (
@@ -40,15 +44,14 @@ const InputRepo = ({isValid}:{isValid:boolean}) => {
               value={input}
               onChange={(e) => {handleInputChange(index, e.target.value);}}
             />
-            
-            
             {index > 0 && <DeleteIcon onClick={()=>{handleRemoveInputBox(index);}} />}
-            </InputWrap>
-            
+            </InputWrap>          
           </InputBox>
-          <ValidText isValid={isValid}>
-          {isValid ? '올바른 url 형식입니다.' : 'url을 정확히 입력해주세요.'}
-        </ValidText>
+          {input.trim().length > 0 && ( 
+              <ValidText isValid={isValidURL(input)}>
+                {isValidURL(input) ? '올바른 URL 형식입니다.' : 'URL을 정확히 입력해주세요.'}
+              </ValidText>
+            )}
         {index === inputBoxes.length - 1 && inputBoxes.length < 3 && (
               <PlusIcon onClick={handleAddInputBox} />
             )}
