@@ -46,7 +46,7 @@ const UserInput = () => {
   <Container>
     <Head>
       <Title>정보 입력하기</Title>
-      <SmallTitle>자기소개서를 위한 정보를 입력해주세요</SmallTitle>
+      <SmallTitle>자기소개서 작성을 위한 정보를 입력해주세요</SmallTitle>
     </Head>
     <InputContainer>
     <TextField text="직무 정보" isEssential={true} placeHolder="직무 정보를 입력해주세요." paddingLeftZeroOption={false} onChange={handleJobRoleChange} value={userInput.jobRole}/>
