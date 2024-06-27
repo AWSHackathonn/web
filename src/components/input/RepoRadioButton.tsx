@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { styled } from 'styled-components';
 
 const RepoRadioButton = ({index}:{index:number}) => {
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+  const initialSelectedItems = index === 0 ? ['item1'] : [];
+  const [selectedItems, setSelectedItems] = useState<string[]>(initialSelectedItems);
 
-  const handleCheckboxChange = (item:string) => {
+  const handleCheckboxChange = (item: string) => {
     if (selectedItems.includes(item)) {
-      setSelectedItems(selectedItems.filter((i) => i !== item));
+      if (selectedItems.length > 1) {
+        setSelectedItems(selectedItems.filter((i) => i !== item));
+      }
     } else {
       setSelectedItems([...selectedItems, item]);
     }
@@ -20,31 +23,31 @@ const RepoRadioButton = ({index}:{index:number}) => {
       </Header>
       <CheckboxContainer>
         <CheckboxItem>
-          <input
+          <CheckBox
             type="checkbox"
             id="item1"
             checked={selectedItems.includes('item1')}
             onChange={() => {handleCheckboxChange('item1');}}
           />
-          <label htmlFor="item1">1</label>
+          <Label htmlFor="item1">1</Label>
         </CheckboxItem>
         <CheckboxItem>
-          <input
+          <CheckBox
             type="checkbox"
             id="item2"
             checked={selectedItems.includes('item2')}
             onChange={() => {handleCheckboxChange('item2');}}
           />
-          <label htmlFor="item2">2</label>
+          <Label htmlFor="item2">2</Label>
         </CheckboxItem>
         <CheckboxItem>
-          <input
+          <CheckBox
             type="checkbox"
             id="item3"
             checked={selectedItems.includes('item3')}
             onChange={() => {handleCheckboxChange('item3');}}
           />
-          <label htmlFor="item3">3</label>
+          <Label htmlFor="item3">3</Label>
         </CheckboxItem>
       </CheckboxContainer>
     </Container>
@@ -78,7 +81,7 @@ const EssentialText = styled.p`
 
 const CheckboxContainer = styled.div`
   display: flex;
-  gap: 112px;
+  gap: 108px;
   margin-top: 10px;
 `;
 
@@ -87,3 +90,11 @@ const CheckboxItem = styled.div`
   align-items: center;
 `;
 
+const CheckBox=styled.input`
+  width:16px;
+  height:16px;
+`
+
+const Label=styled.label`
+  font-size: ${(props) => props.theme.textStyles.subtitle5.fontSize};
+`
