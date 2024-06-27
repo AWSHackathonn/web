@@ -2,13 +2,13 @@ import React from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import UserInput from "./components/input/UserInput";
-import Contents from "./components/contents/Contents";
+import ContentsAll from "./components/contents/ContentsAll";
 
 function App() {
   return (
     <Routes>
       <Route path="/input" element={<UserInput />} />
-      <Route path="/contents" element={<Contents />} />
+      <Route path="/contents" element={<ContentsAll />} />
     </Routes>
   );
 }
