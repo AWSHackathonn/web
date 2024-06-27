@@ -5,11 +5,12 @@ interface TextFieldProps {
     text:string;
     placeHolder:string;
     isEssential:boolean;
+    paddingLeftZeroOption:boolean;
 }
 
-const TextField = ({text,placeHolder,isEssential}:TextFieldProps) => {
+const TextField = ({text,placeHolder,isEssential, paddingLeftZeroOption}:TextFieldProps) => {
   return (
-    <Container>
+    <Container paddingLeftZeroOption={paddingLeftZeroOption}>
         <Header>
         <HeadText>{text}</HeadText>
         {isEssential?<EssentialText>* 필수 항목</EssentialText>:<></>}
@@ -21,12 +22,13 @@ const TextField = ({text,placeHolder,isEssential}:TextFieldProps) => {
 
 export default TextField
 
-const Container = styled.div`
+const Container = styled.div<{ paddingLeftZeroOption: boolean }>`
     display: flex;
     flex-direction: column;
     gap:15px;
 
     padding:10px;
+    padding-left: ${(props)=>props.paddingLeftZeroOption?'0px':'10px'};
 `
 
 const Header=styled.div`

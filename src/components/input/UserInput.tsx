@@ -3,6 +3,7 @@ import BigButton from "../button/BigButton";
 import styled from "styled-components";
 import TextField from "./TextField";
 import InputRepo from "./InputRepo";
+import InputQuestion from "./InputQuestion";
 
 const UserInput = () => {
   const onSubmit=()=>{
@@ -18,9 +19,12 @@ const UserInput = () => {
       <SmallTitle>자기소개서를 위한 정보를 입력해주세요</SmallTitle>
     </Head>
     <InputContainer>
-    <TextField text="직무 정보" isEssential={true} placeHolder="직무 정보를 입력해주세요." />
-    <TextField text="기업 정보" isEssential={false} placeHolder="기업 정보를 입력해주세요." />
+    <TextField text="직무 정보" isEssential={true} placeHolder="직무 정보를 입력해주세요." paddingLeftZeroOption={false}/>
+    <TextField text="기업 정보" isEssential={false} placeHolder="기업 정보를 입력해주세요." paddingLeftZeroOption={false}/>
     <InputRepo isValid={true}/>
+    {[...Array(5)].map((_, index) => (
+    <InputQuestion index={index} key={index} />
+))}
     </InputContainer>
     <BigButton text="제출" event={onSubmit}/>
     </Container>
