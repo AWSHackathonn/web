@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { FiPlus} from "react-icons/fi";
 import { CgClose } from "react-icons/cg";
 import {  useSetRecoilState } from 'recoil';
-import { userInputURLAtom } from '../../stores/input/atom';
+import { userInputURLAtom } from '../../stores/atom';
 import AddContainer from './AddContainer';
 
 const InputReadme = () => {

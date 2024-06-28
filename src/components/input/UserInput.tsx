@@ -5,7 +5,7 @@ import TextField from "./TextField";
 import InputReadme from "./InputReadme";
 import InputQuestion from "./InputQuestion";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { userInputAtom, userInputURLAtom } from "../../stores/input/atom";
+import { userInputAtom, userInputURLAtom } from "../../stores/atom";
 import Header from "../Header";
 import { postUserInput } from "../../api/postUserInput";
 import AddContainer from "./AddContainer";

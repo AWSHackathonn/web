@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 import ReadmeRadioButton from './ReadmeRadioButton';
 import TextField from './TextField';
 import { useRecoilState } from 'recoil';
-import { userInputAtom } from '../../stores/input/atom';
+import { userInputAtom } from '../../stores/atom';
 import { CgClose } from 'react-icons/cg';
 
 
