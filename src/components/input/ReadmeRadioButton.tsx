@@ -74,7 +74,7 @@ const ReadmeRadioButton = ({ index, inputQuestionValue }: { index: number, input
       </Header>
       <CheckboxContainer>
       {userInputURL.length === 0 ? (
-          <NoItemsText>먼저 깃허브 주소를 입력하세요.</NoItemsText>
+          <NoItemsText>먼저 깃허브 주소를 입력하세요. </NoItemsText>
         ) : (
           userInputURL.map((url, idx) => (
             <CheckboxItem key={url}>
