@@ -55,7 +55,7 @@ const InputQuestion = ({ index, handleRemoveInputBox }: InputQuestionProps) => {
       <Header>
         <HeadText>자기소개서 문항 {index + 1}</HeadText>
         {index + 1 === 1 ? <EssentialText>* 필수</EssentialText> : null}
-        {index > 0 && <DeleteIcon onClick={handleRemoveQuestion} />}
+        {index > 0 && <DeleteIcon onClick={handleRemoveQuestion} style={{marginLeft:'385px'}}/>}
       </Header>
       <Input placeholder="자기소개서 문항을 입력해주세요." value={inputValue} onChange={handleInputChange} />
       <ReadmeRadioButton index={index} inputQuestionValue={inputValue} />
@@ -85,7 +85,6 @@ const Header = styled.div`
     display:flex;
     gap:5px;
     align-items: center;
-    justify-content: space-between;
 `
 
 const HeadText = styled.p`
