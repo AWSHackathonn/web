@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { styled } from 'styled-components';
-import { userInputAtom, userInputURLAtom } from '../../stores/input/atom';
+import { userInputAtom, userInputURLAtom } from '../../stores/atom';
 import { theme } from '../../styles/Theme';
 
 const ReadmeRadioButton = ({ index, inputQuestionValue }: { index: number, inputQuestionValue: string }) => {

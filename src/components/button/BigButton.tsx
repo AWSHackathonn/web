@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components';
 import { useRecoilState } from "recoil";
-import { isOk } from "../../stores/input/atom";
+import { isOk } from "../../stores/atom";
 
 interface BigButtonProps {
     text:string;

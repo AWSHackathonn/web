@@ -34,7 +34,13 @@ export const isOk=atom({
     default:false
 })
 
+
 export const userInputURLAtom=atom<string[]>({
     key:'userInputURLAtom',
     default:[]
+})
+
+export const getAnswerAtom=atom({
+    key:'getAnswer',
+    default:''
 })
