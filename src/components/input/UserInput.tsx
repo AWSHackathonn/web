@@ -18,7 +18,7 @@ const UserInput = () => {
 
   const [questionCount, setQuestionCount] = useState(1);
 
-  const navigate= useNavigate();
+  const navigate = useNavigate();
 
   const handleJobRoleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setUserInput({
@@ -103,16 +103,16 @@ const UserInput = () => {
           <InputReadme />
           {[...Array(questionCount)].map((_, index) => (
             <>
-            <QuestionContainer key={index}>
-              <InputQuestion index={index} handleRemoveInputBox={handleRemoveInputBox} />
-            </QuestionContainer>
-            {index === questionCount - 1 && questionCount < 3 && (
-              <AddContainer text="문항 추가하기" event={handleAddQuestion}/>
-            )}
+              <QuestionContainer key={index}>
+                <InputQuestion index={index} handleRemoveInputBox={handleRemoveInputBox} />
+              </QuestionContainer>
+              {index === questionCount - 1 && questionCount < 3 && (
+                <AddContainer text="문항 추가하기" event={handleAddQuestion} />
+              )}
             </>
           ))}
         </InputContainer>
-          <BigButton text="제출" event={onSubmit} valid={valid} />
+        <BigButton text="제출" event={onSubmit} valid={valid} />
       </Container>
     </>
   );

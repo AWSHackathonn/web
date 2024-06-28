@@ -9,8 +9,8 @@ phases:
       - npm run build  # 빌드 실행
   post_build:
     commands:
-      - aws s3 sync ./build s3://your-bucket-name --delete  # S3 버킷으로 빌드 결과물 업로드
-      - aws cloudfront create-invalidation --distribution-id YOUR_DISTRIBUTION_ID --paths "/*"  # CloudFront 캐시 무효화
+      - aws s3 sync ./build s3://mju-team2 --delete  # S3 버킷으로 빌드 결과물 업로드
+      - aws cloudfront create-invalidation --distribution-id E35SMWI18LDN6Q --paths "/*"  # CloudFront 캐시 무효화
 
 artifacts:
   files:
