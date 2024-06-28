@@ -6,16 +6,17 @@ import { isOk } from "../../stores/input/atom";
 interface BigButtonProps {
     text:string;
     event:()=>void;
+    valid: boolean;
 }
 
 
-const BigButton = ({text, event}:BigButtonProps) => {
-  const [valid]=useRecoilState(isOk);
-
+const BigButton = ({ text, event, valid }: BigButtonProps) => {
   return (
-    <Button onClick={()=>{event();} } disabled={!valid} valid={valid}>{text}</Button>
-  )
-}
+    <Button onClick={event} disabled={!valid} valid={valid}>
+      {text}
+    </Button>
+  );
+};
 
 export default BigButton
 

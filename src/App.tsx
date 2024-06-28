@@ -7,10 +7,10 @@ import { RecoilRoot } from "recoil";
 function App() {
   return (
     <RecoilRoot>
-    <Routes>
-      <Route path="/input" element={<UserInput />} />
-      <Route path="/contents" element={<Contents />} />
-    </Routes>
+      <Routes>
+        <Route path="/" element={<UserInput />} />
+        <Route path="/contents" element={<Contents />} />
+      </Routes>
     </RecoilRoot>
   );
 }

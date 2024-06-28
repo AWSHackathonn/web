@@ -16,7 +16,7 @@ const TextField = ({text,placeHolder,isEssential, paddingLeftZeroOption, value, 
     <Container paddingLeftZeroOption={paddingLeftZeroOption}>
         <Header>
         <HeadText>{text}</HeadText>
-        {isEssential?<EssentialText>* 필수 항목</EssentialText>:<></>}
+        {isEssential?<EssentialText>* 필수 </EssentialText>:<></>}
         </Header>
         <Field placeholder={placeHolder} onChange={onChange} value={value} disabled={disabled}/>
     </Container>
