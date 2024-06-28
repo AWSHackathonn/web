@@ -20,6 +20,8 @@ const Contents: React.FC<ContentsAllProps> = ({ children }) => {
   useEffect(() => {
     // Split getAnswer into an array of answers
     const answersArray = getAnswer.split('<br>');
+    console.log(getAnswerAtom);
+    console.log(answersArray);
     setAnswers(answersArray);
   }, [getAnswer]);
 
@@ -66,7 +68,7 @@ const Contents: React.FC<ContentsAllProps> = ({ children }) => {
     }).catch((error: any) => {
       console.error('PDF 생성 에러: ', error);
       document.body.removeChild(container);
-    });
+    }); 
   };
 
   const handleCopyAllClick = () => {
