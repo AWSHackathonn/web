@@ -18,7 +18,7 @@ const Main = () => {
                 <DescTextContainer>
                 <DescText>
                 WriteMe에서는 모든 이야기가 훌륭하게 전달될 가치가 있다고 믿습니다. </DescText>
-                <DescText>우리의 AI가 여러분의 고유한 정보를 분석하고 귀하의 본질, 야망 및 성취를 포착하는 설득력 있는 개인 진술서를 작성합니다.</DescText>
+                <DescText>우리의 AI가 여러분의 고유한 정보를 분석하고 귀하의 본질, 야망 및 성취를 포착하는 설득력 있는 자기소개서를 작성합니다.</DescText>
                 
                 </DescTextContainer>
             </TextContainer>
