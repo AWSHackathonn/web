@@ -68,14 +68,14 @@ const ReadmeRadioButton = ({ index, inputQuestionValue }: { index: number, input
   };
 
   return (
-    <Container>
+    <Container> 
       <Header>
         <HeadText>연결하고 싶은 GitHub 프로젝트 Readme</HeadText>
         {index === 0 && <EssentialText>* 필수</EssentialText>}
       </Header>
       <CheckboxContainer>
       {userInputURL.length === 0 ? (
-          <NoItemsText>먼저 깃허브 주소를 입력하세요.</NoItemsText>
+          <NoItemsText>먼저 깃허브 주소를 입력하세요. </NoItemsText>
         ) : (
           userInputURL.map((url, idx) => (
             <CheckboxItem key={url}>
