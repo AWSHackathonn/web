@@ -141,7 +141,6 @@ const Head = styled.div`
 
 const Title = styled.h1`
   font-size: ${props => props.theme.textStyles.subtitle2.fontSize};
-  color: red;
 `;
 
 const SmallTitle = styled.p`
