@@ -76,7 +76,7 @@ const DescTextContainer=styled.div`
 `
 
 const DescText=styled.p`
-    font-size: 20px;
+    font-size: 18px;
     color: rgba(0, 0, 0, 0.5);
 
     align-items: center;
