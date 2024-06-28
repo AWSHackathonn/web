@@ -50,7 +50,7 @@ const TextContainer=styled.div`
 
     gap:30px;
 
-    width:60%;
+    width:60rem;
 
     padding:40px;
 `
