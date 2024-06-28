@@ -9,6 +9,7 @@ import { userInputAtom, userInputURLAtom } from "../../stores/input/atom";
 import Header from "../Header";
 import { postUserInput } from "../../api/postUserInput";
 import AddContainer from "./AddContainer";
+import { useNavigate } from "react-router-dom";
 
 const UserInput = () => {
   const [userInput, setUserInput] = useRecoilState(userInputAtom);
@@ -16,6 +17,8 @@ const UserInput = () => {
   const [valid, setValid] = useState(false); // 필수 항목이 모두 채워졌는지 여부
 
   const [questionCount, setQuestionCount] = useState(1);
+
+  const navigate= useNavigate();
 
   const handleJobRoleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setUserInput({
@@ -43,12 +46,12 @@ const UserInput = () => {
   };
 
   const onSubmit = async () => {
-    console.log("제출버튼 누름");
     try {
       const response = await postUserInput(userInput);
       console.log('Response:', response);
+      navigate('/contents');
     } catch (error) {
-      console.error('Error submitting user input:', error);
+      alert('데이터 전송에 실패했습니다. 관리자에게 문의해주세요! \n관리자 전화번호는 010-4...');
     }
   };
 
