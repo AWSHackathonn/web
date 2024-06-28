@@ -78,7 +78,7 @@ const Container = styled.div<{ index: number }>`
   flex-direction: column;
   gap: 15px;
   padding: 20px 20px 60px 10px;
-  border-bottom: ${(props) => (props.index < 4 ? '1px solid #d9d9d9' : 'none')};
+  border-bottom: ${(props) => (props.index < 3 ? '1px solid #d9d9d9' : 'none')};
 `;
 
 const Header = styled.div`

@@ -70,7 +70,7 @@ const UserInput = () => {
   }, [userInput.jobRole, userInputURL, userInput.questionList]);
 
   const handleAddQuestion = () => {
-    if (questionCount < 5) {
+    if (questionCount < 3) {
       setQuestionCount(questionCount + 1); // 최대 5개까지 추가 가능
     }
   };
@@ -106,7 +106,7 @@ const UserInput = () => {
             <QuestionContainer key={index}>
               <InputQuestion index={index} handleRemoveInputBox={handleRemoveInputBox} />
             </QuestionContainer>
-            {index === questionCount - 1 && questionCount < 5 && (
+            {index === questionCount - 1 && questionCount < 3 && (
               <AddContainer text="문항 추가하기" event={handleAddQuestion}/>
             )}
             </>
