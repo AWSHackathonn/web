@@ -66,6 +66,8 @@ const HeadTextContainer=styled.div`
 const HeadText=styled.p`
     font-size: 60px;
     font-weight: bold;
+
+    color:red;
 `
 
 const DescTextContainer=styled.div`
