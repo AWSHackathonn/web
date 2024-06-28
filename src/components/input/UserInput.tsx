@@ -131,6 +131,7 @@ const Head = styled.div`
 `;
 
 const Title = styled.h1`
+  color: red;
   font-size: ${props => props.theme.textStyles.subtitle2.fontSize};
 `;
 
