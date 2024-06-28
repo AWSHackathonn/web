@@ -5,12 +5,13 @@ import TextField from "./TextField";
 import InputReadme from "./InputReadme";
 import InputQuestion from "./InputQuestion";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { isOk, userInputAtom, userInputURLAtom } from "../../stores/input/atom";
+import { userInputAtom, userInputURLAtom } from "../../stores/input/atom";
 import Header from "../Header";
+import { postUserInput } from "../../api/postUserInput";
+import AddContainer from "./AddContainer";
 
 const UserInput = () => {
   const [userInput, setUserInput] = useRecoilState(userInputAtom);
-  const [submit, setSubmit] = useRecoilState(isOk);
   const userInputURL = useRecoilValue(userInputURLAtom);
   const [valid, setValid] = useState(false); // 필수 항목이 모두 채워졌는지 여부
 
@@ -41,10 +42,14 @@ const UserInput = () => {
     setQuestionCount(questionCount - 1); // 질문 개수 감소
   };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     console.log("제출버튼 누름");
-    console.log(userInput);
-    // 제출 로직 추가
+    try {
+      const response = await postUserInput(userInput);
+      console.log('Response:', response);
+    } catch (error) {
+      console.error('Error submitting user input:', error);
+    }
   };
 
   useEffect(() => {
@@ -94,19 +99,17 @@ const UserInput = () => {
           />
           <InputReadme />
           {[...Array(questionCount)].map((_, index) => (
+            <>
             <QuestionContainer key={index}>
               <InputQuestion index={index} handleRemoveInputBox={handleRemoveInputBox} />
             </QuestionContainer>
+            {index === questionCount - 1 && questionCount < 5 && (
+              <AddContainer text="문항 추가하기" event={handleAddQuestion}/>
+            )}
+            </>
           ))}
         </InputContainer>
-        <ButtonContainer>
-          {questionCount < 5 && (
-            <Button onClick={handleAddQuestion}>
-              <ButtonText>추가</ButtonText>
-            </Button>
-          )}
           <BigButton text="제출" event={onSubmit} valid={valid} />
-          </ButtonContainer>
       </Container>
     </>
   );
@@ -149,32 +152,4 @@ const InputContainer = styled.div`
 const QuestionContainer = styled.div`
   display: flex;
   align-items: center;
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  gap: 1rem;
-`;
-
-const Button = styled.div`
-  width: 240px;
-  height: 48px;
-  border-radius: 8px;
-  color: ${props => props.theme.white};
-  font-size: ${props => props.theme.textStyles.subtitle5.fontSize};
-  background-color: ${props => props.theme.lightblue};
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-
-  &:hover {
-    opacity: 0.7;
-  }
-`;
-
-const ButtonText = styled.div`
-  font-size: ${props => props.theme.textStyles.button.fontSize};
-  line-height: ${props => props.theme.textStyles.button.lineHeight};
 `;

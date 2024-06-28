@@ -6,6 +6,7 @@ import { useRecoilState } from 'recoil';
 import { userInputAtom } from '../../stores/input/atom';
 import { CgClose } from 'react-icons/cg';
 
+
 type InputQuestionProps = {
   index: number;
   handleRemoveInputBox?: (index: number) => void; // handleRemoveInputBox prop 추가
@@ -54,7 +55,7 @@ const InputQuestion = ({ index, handleRemoveInputBox }: InputQuestionProps) => {
       <Header>
         <HeadText>자기소개서 문항 {index + 1}</HeadText>
         {index + 1 === 1 ? <EssentialText>* 필수</EssentialText> : null}
-        {index > 0 && <DeleteIcon onClick={handleRemoveQuestion} />}
+        {index > 0 && <DeleteIcon onClick={handleRemoveQuestion} style={{marginLeft:'385px'}}/>}
       </Header>
       <Input placeholder="자기소개서 문항을 입력해주세요." value={inputValue} onChange={handleInputChange} />
       <ReadmeRadioButton index={index} inputQuestionValue={inputValue} />
@@ -84,7 +85,6 @@ const Header = styled.div`
     display:flex;
     gap:5px;
     align-items: center;
-    justify-content: space-between;
 `
 
 const HeadText = styled.p`
@@ -107,7 +107,7 @@ const Input = styled.input`
 
 const DeleteIcon = styled(CgClose)`
   cursor: pointer;
-  color: red;
+  color: #d9d9d9;
 
   &:hover {
     color: ${props => props.theme.error};
