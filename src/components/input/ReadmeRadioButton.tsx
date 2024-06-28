@@ -61,9 +61,10 @@ const ReadmeRadioButton = ({ index, inputQuestionValue }: { index: number, input
   };
 
   const getRepositoryName = (url: string): string => {
-    const startIndex = url.indexOf('/user/') + '/user/'.length;
-    const endIndex = url.indexOf('/', startIndex);
-    return url.substring(startIndex, endIndex);
+    const userStartIndex = url.indexOf('github.com/') + 'github.com/'.length;
+    const repoStartIndex = url.indexOf('/', userStartIndex) + 1;
+    const repoEndIndex = url.indexOf('/', repoStartIndex);
+    return url.substring(repoStartIndex, repoEndIndex);
   };
 
   return (
