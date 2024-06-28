@@ -4,8 +4,8 @@ import styled from "styled-components";
 import TextField from "./TextField";
 import InputReadme from "./InputReadme";
 import InputQuestion from "./InputQuestion";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { userInputAtom, userInputURLAtom } from "../../stores/atom";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { getAnswerAtom, userInputAtom, userInputURLAtom } from "../../stores/atom";
 import Header from "../Header";
 import { postUserInput } from "../../api/postUserInput";
 import AddContainer from "./AddContainer";
@@ -19,6 +19,8 @@ const UserInput = () => {
   const [questionCount, setQuestionCount] = useState(1);
 
   const navigate= useNavigate();
+
+  const setAnswer=useSetRecoilState(getAnswerAtom);
 
   const handleJobRoleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setUserInput({
@@ -49,9 +51,10 @@ const UserInput = () => {
     try {
       const response = await postUserInput(userInput);
       console.log('Response:', response);
+      setAnswer(response.data);
       navigate('/contents');
     } catch (error) {
-      alert('데이터 전송에 실패했습니다. 관리자에게 문의해주세요! \n관리자 전화번호는 010-4...');
+      alert('데이터 전송에 실패했습니다. 관리자에게 문의해주세요!\n관리자 전화번호는 010-4...');
     }
   };
 
