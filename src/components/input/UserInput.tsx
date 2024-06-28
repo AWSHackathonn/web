@@ -18,7 +18,7 @@ const UserInput = () => {
 
   const [questionCount, setQuestionCount] = useState(1);
 
-  const navigate= useNavigate();
+  const navigate = useNavigate();
 
   const setAnswer=useSetRecoilState(getAnswerAtom);
 
@@ -106,16 +106,16 @@ const UserInput = () => {
           <InputReadme />
           {[...Array(questionCount)].map((_, index) => (
             <>
-            <QuestionContainer key={index}>
-              <InputQuestion index={index} handleRemoveInputBox={handleRemoveInputBox} />
-            </QuestionContainer>
-            {index === questionCount - 1 && questionCount < 3 && (
-              <AddContainer text="문항 추가하기" event={handleAddQuestion}/>
-            )}
+              <QuestionContainer key={index}>
+                <InputQuestion index={index} handleRemoveInputBox={handleRemoveInputBox} />
+              </QuestionContainer>
+              {index === questionCount - 1 && questionCount < 3 && (
+                <AddContainer text="문항 추가하기" event={handleAddQuestion} />
+              )}
             </>
           ))}
         </InputContainer>
-          <BigButton text="제출" event={onSubmit} valid={valid} />
+        <BigButton text="제출" event={onSubmit} valid={valid} />
       </Container>
     </>
   );
@@ -141,6 +141,7 @@ const Head = styled.div`
 
 const Title = styled.h1`
   font-size: ${props => props.theme.textStyles.subtitle2.fontSize};
+  color: red;
 `;
 
 const SmallTitle = styled.p`
