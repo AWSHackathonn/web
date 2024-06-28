@@ -4,6 +4,7 @@ import { FiPlus} from "react-icons/fi";
 import { CgClose } from "react-icons/cg";
 import {  useSetRecoilState } from 'recoil';
 import { userInputURLAtom } from '../../stores/input/atom';
+import AddContainer from './AddContainer';
 
 const InputReadme = () => {
     const [inputBoxes, setInputBoxes] = useState<string[]>(['']);
@@ -73,7 +74,7 @@ const InputReadme = () => {
               </ValidText>
             )}
         {index === inputBoxes.length - 1 && inputBoxes.length < 3 && (
-              <PlusIcon onClick={handleAddInputBox} />
+              <AddContainer text="주소 추가하기" event={handleAddInputBox} />
             )}
         </>
         ))}

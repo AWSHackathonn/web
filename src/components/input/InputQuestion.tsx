@@ -6,6 +6,7 @@ import { useRecoilState } from 'recoil';
 import { userInputAtom } from '../../stores/input/atom';
 import { CgClose } from 'react-icons/cg';
 
+
 type InputQuestionProps = {
   index: number;
   handleRemoveInputBox?: (index: number) => void; // handleRemoveInputBox prop 추가
@@ -107,7 +108,7 @@ const Input = styled.input`
 
 const DeleteIcon = styled(CgClose)`
   cursor: pointer;
-  color: red;
+  color: #d9d9d9;
 
   &:hover {
     color: ${props => props.theme.error};
