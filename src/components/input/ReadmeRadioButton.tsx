@@ -60,7 +60,7 @@ const ReadmeRadioButton = ({ index, inputQuestionValue }: { index: number, input
     });
   };
 
-  const getRepositoryName = (url: string): string => {
+  const getRepositoryName = (url: string): string => { 
     const startIndex = url.indexOf('/user/') + '/user/'.length;
     const endIndex = url.indexOf('/', startIndex);
     return url.substring(startIndex, endIndex);
