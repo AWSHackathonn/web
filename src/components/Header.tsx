@@ -2,18 +2,20 @@ import React from 'react'
 import { styled } from 'styled-components';
 import { SiIrobot } from "react-icons/si";
 import { theme } from '../styles/Theme';
+import { useNavigate } from 'react-router-dom';
 
 
 const Header: React.FC = () => {
+  const navigate= useNavigate();
   return (
     <Container>
       <LayoutContainer>
         <HeaderWrapper>
-          <HeaderContent>
+          <HeaderContent onClick={()=>navigate('/')}>
             <LogoContainer>
               <SiIrobot />
             </LogoContainer>
-            <Title>개인 맞춤형 자소서 작성 AI</Title>
+            <Title>WriteMe</Title>
           </HeaderContent>
         </HeaderWrapper>
       </LayoutContainer>
@@ -52,6 +54,8 @@ export const HeaderContent = styled.div`
   align-items: center;
   gap: 16px;
   color: black;
+
+  cursor: pointer;
 `;
 
 export const LogoContainer = styled.div`
