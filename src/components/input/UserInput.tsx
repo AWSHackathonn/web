@@ -51,7 +51,7 @@ const UserInput = () => {
     try {
       const response = await postUserInput(userInput);
       console.log('Response:', response);
-      setAnswer(response.data);
+      setAnswer(response);
       navigate('/contents');
     } catch (error) {
       alert('데이터 전송에 실패했습니다. 관리자에게 문의해주세요!\n관리자 전화번호는 010-4...');
